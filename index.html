@@ -1,0 +1,488 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Abdul Ahad Siddiqui - Creative Developer & Data Scientist</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+    <script src="https://unpkg.com/split-type"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+    <style>
+        body {
+            font-family: 'Manrope', sans-serif;
+            background-color: #0D1117; /* Deep Navy/Black */
+            color: #E6F1FF; /* Soft White */
+        }
+        #bg-canvas {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+        }
+        .text-accent-gradient {
+            background: linear-gradient(90deg, #30CFD0 0%, #c43ad6 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        .bg-card {
+            background-color: #161B22; /* Lighter dark for cards */
+        }
+        .btn {
+            transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+        }
+        .btn-primary {
+            background-image: linear-gradient(90deg, #30CFD0 0%, #c43ad6 100%);
+            background-size: 200% 100%;
+            color: white;
+            font-weight: 600;
+        }
+        .btn-primary:hover {
+            background-position: right center;
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px rgba(48, 207, 208, 0.15);
+        }
+        .btn-secondary {
+            background-color: transparent;
+            color: #8B949E;
+            border: 1px solid #30363d;
+        }
+        .btn-secondary:hover {
+            color: #E6F1FF;
+            border-color: #c43ad6;
+        }
+        /* Restored clip-path for simple slide-in animation */
+        .section-heading {
+            clip-path: polygon(0 0, 100% 0, 100% 100%, 0% 100%);
+        }
+        .line {
+            overflow: hidden;
+        }
+        .project-card {
+            transition: all 0.4s ease;
+            border: 1px solid #30363d;
+        }
+        .project-card:hover {
+             border-image: linear-gradient(90deg, #30CFD0 0%, #c43ad6 100%) 1;
+        }
+        .project-card .project-image {
+            transition: transform 0.6s cubic-bezier(0.165, 0.84, 0.44, 1);
+        }
+        .project-card:hover .project-image {
+            transform: scale(1.05);
+        }
+        .timeline-path {
+            stroke-dasharray: 1;
+            stroke-dashoffset: 1;
+        }
+        .cert-card {
+            border: 1px solid #30363d;
+            transition: all 0.3s ease;
+        }
+        .cert-card:hover {
+            transform: translateY(-5px);
+            border-image: linear-gradient(90deg, #30CFD0 0%, #c43ad6 100%) 1;
+            box-shadow: 0 15px 30px -5px rgba(0,0,0,0.2);
+        }
+        /* Fix for animation glitches (FOUC) */
+        .hero-el, .section-heading, .about-image, .about-text p, .timeline-item, .project-card, .cert-card {
+            visibility: hidden;
+        }
+        .hero-title .hero-el {
+            display: inline-block;
+        }
+    </style>
+</head>
+<body class="antialiased">
+<canvas id="bg-canvas"></canvas>
+
+<!-- Header -->
+<header class="fixed top-0 left-0 right-0 z-50 bg-[#0D1117]/80 backdrop-blur-sm">
+    <div class="container mx-auto px-6 py-5 flex justify-between items-center">
+        <a href="#" class="text-2xl font-bold">a<span class="text-accent-gradient">s</span>.</a>
+        <nav class="hidden md:flex items-center space-x-8 text-sm font-medium text-gray-300">
+            <a href="#about" class="hover:text-white transition-colors">About</a>
+            <a href="#experience" class="hover:text-white transition-colors">Experience</a>
+            <a href="#projects" class="hover:text-white transition-colors">Projects</a>
+            <a href="#certifications" class="hover:text-white transition-colors">Certifications</a>
+            <a href="#contact" class="hover:text-white transition-colors">Contact</a>
+        </nav>
+        <a href="mailto:abdul983920@gmail.com" class="hidden md:inline-block btn btn-secondary text-xs font-bold uppercase tracking-wider py-3 px-6 rounded-full">
+            Get In Touch
+        </a>
+        <button id="mobile-menu-button" class="md:hidden focus:outline-none">
+            <i data-lucide="menu"></i>
+        </button>
+    </div>
+    <div id="mobile-menu" class="hidden md:hidden bg-card/95 backdrop-blur-lg">
+        <a href="#about" class="block py-3 px-6 text-sm hover:bg-gray-800">About</a>
+        <a href="#experience" class="block py-3 px-6 text-sm hover:bg-gray-800">Experience</a>
+        <a href="#projects" class="block py-3 px-6 text-sm hover:bg-gray-800">Projects</a>
+        <a href="#certifications" class="block py-3 px-6 text-sm hover:bg-gray-800">Certifications</a>
+        <a href="#contact" class="block py-3 px-6 text-sm hover:bg-gray-800">Contact</a>
+    </div>
+</header>
+
+<main class="container mx-auto px-6 relative z-10">
+    <!-- Hero Section -->
+    <section id="hero" class="min-h-screen flex items-center">
+        <div class="max-w-4xl">
+            <!-- Added .hero-title class for better animation targeting -->
+            <h1 class="hero-title text-5xl md:text-8xl font-bold tracking-tighter">
+                <span class="line"><span class="hero-el">Creative Developer</span></span>
+                <span class="line"><span class="hero-el text-accent-gradient">& Data Scientist</span></span>
+            </h1>
+            <p class="hero-el mt-8 max-w-xl text-lg text-gray-400">
+                Hi, I'm Abdul. I craft elegant digital solutions and extract meaningful insights from data. Currently focused on building intuitive, high-performance web applications and robust data systems.
+            </p>
+            <div class="hero-el mt-12 flex flex-wrap gap-4">
+                <a href="#projects" class="btn btn-primary py-4 px-10 rounded-full">View My Projects</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="py-24 md:py-32">
+        <div class="grid md:grid-cols-12 gap-10 items-center">
+            <div class="md:col-span-5">
+                <div class="w-full h-[450px] rounded-2xl bg-gray-800 overflow-hidden">
+                    <img src="https://images.unsplash.com/photo-1522252234503-e356532cafd5?q=80&w=2070&auto=format&fit=crop" alt="Code on a screen" class="about-image w-full h-full object-cover opacity-70">
+                </div>
+            </div>
+            <div class="md:col-span-7">
+                <h2 class="section-heading text-4xl md:text-5xl font-bold tracking-tight">
+                    Designing with Purpose & Precision.<br>
+                </h2>
+                <div class="about-text mt-8 space-y-4 text-gray-400 text-base">
+                    <p>I'm a developer who bridges the gap between creative vision and technical execution. My work is driven by a passion for clean code, user-centric design, and data-driven decisions.</p>
+                    <p>With a foundation in both full-stack development and data science, I bring a holistic perspective to every project. I excel in environments that demand both analytical rigor and creative problem-solving, from optimizing data pipelines with Python to building beautiful, responsive interfaces with React.</p>
+                    <p>I've also ventured into the world of DevOps, gaining proficiency in Azure and implementing CI/CD pipelines with Harness to streamline development and ensure robust, scalable deployments.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Experience Section -->
+    <section id="experience" class="py-24 md:py-32">
+        <h2 class="section-heading text-4xl md:text-5xl font-bold tracking-tight text-center mb-20">
+            Career Milestones<br>
+        </h2>
+        <div class="max-w-3xl mx-auto relative">
+            <svg width="2" height="100%" class="absolute left-[14px] top-0 h-full">
+                <line x1="1" y1="0" x2="1" y2="100%" stroke="#30363d" stroke-width="2" class="timeline-path"></line>
+            </svg>
+            <div class="space-y-16">
+                <div class="timeline-item pl-12 relative">
+                    <div class="timeline-dot absolute left-0 top-1 w-8 h-8 rounded-full bg-accent flex items-center justify-center ring-8 ring-[#161B22]" style="background-image: linear-gradient(90deg, #30CFD0 0%, #c43ad6 100%);"><i data-lucide="bar-chart-2" class="w-4 h-4 text-white"></i></div>
+                    <p class="text-sm font-semibold text-accent-gradient">Sep 2024 - Present</p>
+                    <h3 class="text-xl font-bold mt-1">Data Scientist, Tata Consultancy Services</h3>
+                    <p class="mt-2 text-gray-400">Architecting data processing pipelines and leveraging real-time streaming with Kafka to power analytical dashboards.</p>
+                </div>
+                <div class="timeline-item pl-12 relative">
+                    <div class="timeline-dot absolute left-0 top-1 w-8 h-8 rounded-full bg-accent flex items-center justify-center ring-8 ring-[#161B22]" style="background-image: linear-gradient(90deg, #30CFD0 0%, #c43ad6 100%);"><i data-lucide="code" class="w-4 h-4 text-white"></i></div>
+                    <p class="text-sm font-semibold text-accent-gradient">2022 - 2024</p>
+                    <h3 class="text-xl font-bold mt-1">Python Developer, Crypto Tax International</h3>
+                    <p class="mt-2 text-gray-400">Drove a 54% reduction in data processing time through automation and algorithm optimization, significantly improving efficiency.</p>
+                </div>
+                <div class="timeline-item pl-12 relative">
+                    <div class="timeline-dot absolute left-0 top-1 w-8 h-8 rounded-full bg-accent flex items-center justify-center ring-8 ring-[#161B22]" style="background-image: linear-gradient(90deg, #30CFD0 0%, #c43ad6 100%);"><i data-lucide="layout-template" class="w-4 h-4 text-white"></i></div>
+                    <p class="text-sm font-semibold text-accent-gradient">Jun 2021 - Aug 2021</p>
+                    <h3 class="text-xl font-bold mt-1">Full Stack Intern, Varcons Limited</h3>
+                    <p class="mt-2 text-gray-400">Developed a full-stack real estate platform, increasing user engagement by 25% through improved UI/UX and functionality.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Projects Section -->
+    <section id="projects" class="py-24 md:py-32">
+        <h2 class="section-heading text-4xl md:text-5xl font-bold tracking-tight text-center mb-20">
+            Selected Creations<br>
+        </h2>
+        <div class="grid md:grid-cols-2 gap-10">
+            <a href="https://github.com/siddiquiabdul007/OMR-Evaluator" target="_blank" class="project-card block bg-card rounded-2xl p-2">
+                <div class="rounded-xl overflow-hidden bg-gray-800 aspect-[4/3]">
+                    <img src="https://images.unsplash.com/photo-1587620962725-abab7fe55159?q=80&w=1931&auto=format&fit=crop" class="project-image w-full h-full object-cover" alt="OMR Evaluator Project">
+                </div>
+                <div class="p-6">
+                    <h3 class="text-xl font-semibold mt-2">OMR Evaluation System</h3>
+                    <p class="text-gray-400 mt-2">An intelligent system using computer vision to automate the grading of OMR sheets with high accuracy.</p>
+                </div>
+            </a>
+            <a href="https://github.com/siddiquiabdul007/YouTube-Video-Data-Extraction-Text-Analysis-and-Automation" target="_blank" class="project-card block bg-card rounded-2xl p-2">
+                <div class="rounded-xl overflow-hidden bg-gray-800 aspect-[4/3]">
+                    <img src="https://images.unsplash.com/photo-1611162617213-7d7a39e9b1d7?q=80&w=1974&auto=format&fit=crop" class="project-image w-full h-full object-cover" alt="YouTube Sentiment Analysis Project">
+                </div>
+                <div class="p-6">
+                    <h3 class="text-xl font-semibold mt-2">YouTube Sentiment Analysis Engine</h3>
+                    <p class="text-gray-400 mt-2">A data pipeline that extracts YouTube comments to perform sentiment analysis and visualize product perception.</p>
+                </div>
+            </a>
+        </div>
+    </section>
+
+    <!-- Certifications Section -->
+    <section id="certifications" class="py-24 md:py-32">
+        <h2 class="section-heading text-4xl md:text-5xl font-bold tracking-tight text-center mb-20">
+            Licenses & Certifications<br>
+        </h2>
+        <div class="max-w-4xl mx-auto grid md:grid-cols-2 gap-8">
+            <!-- Cert Card -->
+            <a href="https://www.credly.com/badges/84af4e96-c907-4d12-9546-c399f43bbf5e/print" target="_blank" class="cert-card bg-card rounded-2xl p-6 flex items-center space-x-5">
+                <img src="https://placehold.co/64x64/161B22/E6F1FF?text=IBM" alt="IBM Logo" class="w-16 h-16 rounded-full flex-shrink-0">
+                <div>
+                    <h3 class="font-bold text-lg">IBM Scala 101</h3>
+                    <p class="text-sm text-gray-500">Issued Mar 2024</p>
+                </div>
+            </a>
+            <!-- Cert Card -->
+            <div class="cert-card bg-card rounded-2xl p-6 flex items-center space-x-5">
+                <img src="https://placehold.co/64x64/161B22/E6F1FF?text=GOOG" alt="Google Logo" class="w-16 h-16 rounded-full flex-shrink-0">
+                <div>
+                    <h3 class="font-bold text-lg">Exploring Data Transformation with Google Cloud</h3>
+                    <p class="text-sm text-gray-500">Issued Feb 2024</p>
+                </div>
+            </div>
+            <!-- Cert Card -->
+            <div class="cert-card bg-card rounded-2xl p-6 flex items-center space-x-5">
+                <img src="https://placehold.co/64x64/161B22/E6F1FF?text=MSFT" alt="Microsoft Logo" class="w-16 h-16 rounded-full flex-shrink-0">
+                <div>
+                    <h3 class="font-bold text-lg">Career Essentials in Software Development</h3>
+                    <p class="text-sm text-gray-500">Issued Jan 2023</p>
+                </div>
+            </div>
+            <!-- Cert Card -->
+            <div class="cert-card bg-card rounded-2xl p-6 flex items-center space-x-5">
+                <img src="https://placehold.co/64x64/161B22/E6F1FF?text=INFY" alt="Infosys Logo" class="w-16 h-16 rounded-full flex-shrink-0">
+                <div>
+                    <h3 class="font-bold text-lg">Advanced Statistics and Data Mining</h3>
+                    <p class="text-sm text-gray-500">Issued Aug 2024</p>
+                </div>
+            </div>
+            <!-- Cert Card -->
+            <div class="cert-card bg-card rounded-2xl p-6 flex items-center space-x-5">
+                <img src="https://placehold.co/64x64/161B22/E6F1FF?text=SQL" alt="Simplilearn Logo" class="w-16 h-16 rounded-full flex-shrink-0">
+                <div>
+                    <h3 class="font-bold text-lg">Introduction to SQL</h3>
+                    <p class="text-sm text-gray-500">Issued Dec 2022</p>
+                </div>
+            </div>
+            <!-- Cert Card -->
+            <div class="cert-card bg-card rounded-2xl p-6 flex items-center space-x-5">
+                <img src="https://placehold.co/64x64/161B22/E6F1FF?text=PY" alt="Pygame Logo" class="w-16 h-16 rounded-full flex-shrink-0">
+                <div>
+                    <h3 class="font-bold text-lg">Game Development using Pygame</h3>
+                    <p class="text-sm text-gray-500">Issued Mar 2021</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="py-24 md:py-32 text-center">
+        <h2 class="section-heading text-4xl md:text-5xl font-bold tracking-tight">
+            Have a project<br><span class="text-accent-gradient">in mind?</span>
+        </h2>
+        <p class="max-w-xl mx-auto text-lg text-gray-400 mt-8">I'm currently available for freelance work and open to discussing new opportunities. Let's create something amazing together.</p>
+        <a href="mailto:abdul983920@gmail.com" class="btn btn-primary py-4 px-10 rounded-full inline-block mt-12">
+            abdul983920@gmail.com
+        </a>
+        <div class="flex justify-center space-x-8 mt-16">
+            <a href="https://www.linkedin.com/in/abdul-ahad-siddiqui-8a38a21b9" target="_blank" class="text-gray-500 hover:text-white transition-colors"><i data-lucide="linkedin" class="w-6 h-6"></i></a>
+            <a href="https://github.com/siddiquiabdul007" target="_blank" class="text-gray-500 hover:text-white transition-colors"><i data-lucide="github" class="w-6 h-6"></i></a>
+        </div>
+    </section>
+</main>
+
+<footer class="py-8 text-center relative z-10">
+    <p class="text-sm text-gray-500">&copy; 2024 Abdul Ahad Siddiqui.</p>
+</footer>
+
+<script>
+    lucide.createIcons();
+
+    // Mobile menu toggle
+    const mobileMenuButton = document.getElementById('mobile-menu-button');
+    const mobileMenu = document.getElementById('mobile-menu');
+    mobileMenuButton.addEventListener('click', () => {
+        mobileMenu.classList.toggle('hidden');
+    });
+    document.querySelectorAll('#mobile-menu a').forEach(link => {
+        link.addEventListener('click', () => mobileMenu.classList.add('hidden'));
+    });
+
+    // --- Three.js Background Animation ---
+    let scene, camera, renderer, particles;
+
+    function initThree() {
+        scene = new THREE.Scene();
+        camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
+        renderer = new THREE.WebGLRenderer({ canvas: document.getElementById('bg-canvas'), alpha: true });
+        renderer.setSize(window.innerWidth, window.innerHeight);
+
+        const particleCount = 5000;
+        const positions = new Float32Array(particleCount * 3);
+        const colors = new Float32Array(particleCount * 3);
+        const particleGeometry = new THREE.BufferGeometry();
+
+        for (let i = 0; i < particleCount; i++) {
+            const x = (Math.random() - 0.5) * 15;
+            const y = (Math.random() - 0.5) * 15;
+            const z = (Math.random() - 0.5) * 15;
+            positions[i * 3] = x;
+            positions[i * 3 + 1] = y;
+            positions[i * 3 + 2] = z;
+
+            const color = new THREE.Color(Math.random() > 0.5 ? 0x30CFD0 : 0xc43ad6);
+            colors[i*3] = color.r;
+            colors[i*3+1] = color.g;
+            colors[i*3+2] = color.b;
+        }
+
+        particleGeometry.setAttribute('position', new THREE.BufferAttribute(positions, 3));
+        particleGeometry.setAttribute('color', new THREE.BufferAttribute(colors, 3));
+
+        const particleMaterial = new THREE.PointsMaterial({
+            size: 0.02,
+            vertexColors: true,
+            transparent: true,
+            opacity: 0.6,
+            blending: THREE.AdditiveBlending
+        });
+
+        particles = new THREE.Points(particleGeometry, particleMaterial);
+        scene.add(particles);
+        camera.position.z = 5;
+
+        animate();
+    }
+
+    let mouseX = 0, mouseY = 0;
+    document.addEventListener('mousemove', (event) => {
+        mouseX = (event.clientX - window.innerWidth / 2) / (window.innerWidth / 2);
+        mouseY = (event.clientY - window.innerHeight / 2) / (window.innerHeight / 2);
+    });
+
+    function animate() {
+        requestAnimationFrame(animate);
+        const time = Date.now() * 0.0001;
+        particles.rotation.x = Math.sin(time) * 0.05;
+        particles.rotation.y = Math.cos(time) * 0.05;
+
+        camera.position.x += (mouseX * 0.5 - camera.position.x) * 0.05;
+        camera.position.y += (-mouseY * 0.5 - camera.position.y) * 0.05;
+        camera.lookAt(scene.position);
+
+        renderer.render(scene, camera);
+    }
+
+    window.addEventListener('resize', () => {
+        camera.aspect = window.innerWidth / window.innerHeight;
+        camera.updateProjectionMatrix();
+        renderer.setSize(window.innerWidth, window.innerHeight);
+    });
+
+    initThree();
+
+
+    // --- GSAP Animations ---
+    gsap.registerPlugin(ScrollTrigger);
+
+    // Animate Hero Section on load
+    const heroEls = document.querySelectorAll(".hero-el");
+    gsap.from(heroEls, {
+        duration: 1.5,
+        y: 120,
+        autoAlpha: 0,
+        stagger: 0.1,
+        ease: "power4.out",
+        delay: 0.2
+    });
+
+    // Animate headings with a simple "slide-in" style
+    const headings = document.querySelectorAll(".section-heading");
+    headings.forEach(heading => {
+        // FIXED: Make the heading visible before animating its child words
+        gsap.set(heading, {autoAlpha: 1});
+        const typeSplit = new SplitType(heading, { types: 'lines, words', lineClass: 'line' });
+        gsap.from(typeSplit.words, {
+            scrollTrigger: {
+                trigger: heading,
+                start: "top 85%",
+            },
+            duration: 1.2,
+            yPercent: 100,
+            autoAlpha: 0,
+            stagger: 0.05,
+            ease: "power4.out",
+        });
+    });
+
+    // Animate About section content
+    gsap.from(".about-image", {
+        scrollTrigger: { trigger: "#about", start: "top 80%" },
+        duration: 1.8,
+        clipPath: 'inset(0 100% 0 0)',
+        autoAlpha: 0,
+        ease: 'expo.out'
+    });
+    gsap.from(".about-text p", {
+        scrollTrigger: { trigger: ".about-text", start: "top 90%" },
+        duration: 1.2,
+        y: 40,
+        autoAlpha: 0,
+        stagger: 0.15,
+        ease: 'power3.out'
+    });
+
+    // Animate Timeline
+    const timelinePath = document.querySelector('.timeline-path');
+    gsap.to(timelinePath, {
+        strokeDashoffset: 0,
+        scrollTrigger: {
+            trigger: '#experience',
+            start: 'top 40%',
+            end: 'bottom 80%',
+            scrub: 1.5
+        }
+    });
+
+    const timelineItems = document.querySelectorAll('.timeline-item');
+    timelineItems.forEach(item => {
+        gsap.from(item, {
+            scrollTrigger: {
+                trigger: item,
+                start: 'top 85%',
+                toggleActions: 'play none none reverse'
+            },
+            autoAlpha: 0,
+            x: -80,
+            duration: 1.2,
+            ease: 'power3.out'
+        });
+    });
+
+    // Animate Project & Cert Cards
+    const cards = document.querySelectorAll('.project-card, .cert-card');
+    cards.forEach(card => {
+        gsap.from(card, {
+            scrollTrigger: {
+                trigger: card,
+                start: 'top 90%',
+                toggleActions: 'play none none reverse'
+            },
+            autoAlpha: 0,
+            y: 80,
+            duration: 1.2,
+            ease: 'power3.out'
+        });
+    });
+
+</script>
+</body>
+</html>
