@@ -99,39 +99,54 @@
 <body class="antialiased">
 <canvas id="bg-canvas"></canvas>
 
+<!-- Header -->
 <header class="fixed top-0 left-0 right-0 z-50 bg-[#0D1117]/80 backdrop-blur-sm">
     <div class="container mx-auto px-6 py-5 flex justify-between items-center">
         <a href="#" class="text-2xl font-bold">a<span class="text-accent-gradient">s</span>.</a>
         <nav class="hidden md:flex items-center space-x-8 text-sm font-medium text-gray-300">
             <a href="#about" class="hover:text-white transition-colors">About</a>
             <a href="#experience" class="hover:text-white transition-colors">Experience</a>
-            <a href="#skills" class="hover:text-white transition-colors">Skills</a>
+            <a href="#projects" class="hover:text-white transition-colors">Projects</a>
             <a href="#certifications" class="hover:text-white transition-colors">Certifications</a>
             <a href="#contact" class="hover:text-white transition-colors">Contact</a>
         </nav>
-        <a href="mailto:abdul983920@gmail.com" class="hidden md:inline-block btn btn-secondary text-xs font-bold uppercase tracking-wider py-3 px-6 rounded-full">
-            Get In Touch
-        </a>
+        <div class="hidden md:flex items-center space-x-4">
+            <a href="mailto:abdul983920@gmail.com" class="btn btn-secondary text-xs font-bold uppercase tracking-wider py-3 px-6 rounded-full">
+                Get In Touch
+            </a>
+        </div>
+        <button id="mobile-menu-button" class="md:hidden focus:outline-none">
+            <i data-lucide="menu"></i>
+        </button>
+    </div>
+    <div id="mobile-menu" class="hidden md:hidden bg-card/95 backdrop-blur-lg">
+        <a href="#about" class="block py-3 px-6 text-sm hover:bg-gray-800">About</a>
+        <a href="#experience" class="block py-3 px-6 text-sm hover:bg-gray-800">Experience</a>
+        <a href="#projects" class="block py-3 px-6 text-sm hover:bg-gray-800">Projects</a>
+        <a href="#certifications" class="block py-3 px-6 text-sm hover:bg-gray-800">Certifications</a>
+        <a href="#contact" class="block py-3 px-6 text-sm hover:bg-gray-800">Contact</a>
     </div>
 </header>
 
 <main class="container mx-auto px-6 relative z-10">
+    <!-- Hero Section -->
     <section id="hero" class="min-h-screen flex items-center">
         <div class="max-w-4xl">
             <h1 class="hero-title text-5xl md:text-8xl font-bold tracking-tighter">
                 <span class="line"><span class="hero-el">DevOps Engineer</span></span>
-                <span class="line"><span class="hero-el text-accent-gradient">& SPOC @ TCS</span></span>
+                <span class="line"><span class="hero-el text-accent-gradient">& Cloud Architect</span></span>
             </h1>
             <p class="hero-el mt-8 max-w-xl text-lg text-gray-400">
-                Hi, I'm Abdul. A results-oriented DevOps Engineer with 4+ years of experience in cloud infrastructure automation and Kubernetes orchestration. [cite: 5] Currently leading infrastructure operations for 400+ member projects. [cite: 6]
+                Results-oriented engineer with 4+ years of experience in cloud infrastructure automation, CI/CD pipelines, and Kubernetes-based microservices. Currently serving as DevOps SPOC for enterprise teams at TCS.
             </p>
             <div class="hero-el mt-12 flex flex-wrap gap-4">
                 <a href="#experience" class="btn btn-primary py-4 px-10 rounded-full">View Experience</a>
-                <a href="https://github.com/siddiquiabdul007" target="_blank" class="btn btn-secondary py-4 px-10 rounded-full">GitHub Profile</a>
+                <a href="#contact" class="btn btn-secondary py-4 px-10 rounded-full">Let's Talk</a>
             </div>
         </div>
     </section>
 
+    <!-- About Section -->
     <section id="about" class="py-24 md:py-32">
         <div class="grid md:grid-cols-12 gap-10 items-center">
             <div class="md:col-span-5">
@@ -141,113 +156,159 @@
             </div>
             <div class="md:col-span-7">
                 <h2 class="section-heading text-4xl md:text-5xl font-bold tracking-tight">
-                    Automating Scale with<br>Infrastructure as Code.
+                    Automating at Scale with<br><span class="text-accent-gradient">Cloud Native Tech.</span>
                 </h2>
                 <div class="about-text mt-8 space-y-4 text-gray-400 text-base">
-                    <p>I specialize in migrating large-scale microservices to Kubernetes and provisioning secure Azure environments using Terraform. [cite: 7]</p>
-                    <p>My core focus is on zero-downtime deployments and high availability. I've designed Blue-Green strategies and maintained complex CI/CD pipelines using Azure DevOps and Harness. [cite: 7, 8]</p>
-                    <p>Beyond orchestration, I build real-time data streaming pipelines with Apache Kafka and automate data workflows with Python to drive operational efficiency. [cite: 8, 12, 24]</p>
+                    <p>I specialize in bridging the gap between development and operations. My expertise lies in migrating large-scale microservices to Kubernetes, implementing zero-downtime deployment strategies, and provisioning secure Azure environments using Infrastructure as Code (Terraform).</p>
+                    <p>From designing Blue-Green deployments to architecting high-throughput Kafka data pipelines, I focus on building resilient, scalable systems that drive business value. My background includes a blend of software engineering and infrastructure management, allowing for a deep understanding of the full application lifecycle.</p>
+                    <p>With proficiencies in Azure DevOps, Docker, and Harness CI/CD, I help teams achieve high availability and optimized container orchestration for production-grade environments.</p>
                 </div>
             </div>
         </div>
     </section>
 
+    <!-- Experience Section -->
     <section id="experience" class="py-24 md:py-32">
         <h2 class="section-heading text-4xl md:text-5xl font-bold tracking-tight text-center mb-20">
-            Professional Journey<br>
+            Professional Experience<br>
         </h2>
-        <div class="max-w-3xl mx-auto relative">
+        <div class="max-w-4xl mx-auto relative">
             <svg width="2" height="100%" class="absolute left-[14px] top-0 h-full">
                 <line x1="1" y1="0" x2="1" y2="100%" stroke="#30363d" stroke-width="2" class="timeline-path"></line>
             </svg>
             <div class="space-y-16">
+                <!-- TCS -->
                 <div class="timeline-item pl-12 relative">
                     <div class="timeline-dot absolute left-0 top-1 w-8 h-8 rounded-full bg-accent flex items-center justify-center ring-8 ring-[#161B22]" style="background-image: linear-gradient(90deg, #30CFD0 0%, #c43ad6 100%);"><i data-lucide="cloud" class="w-4 h-4 text-white"></i></div>
                     <p class="text-sm font-semibold text-accent-gradient">Jan 2024 - Present</p>
-                    <h3 class="text-xl font-bold mt-1">DevOps SPOC, Tata Consultancy Services (TCS)</h3>
-                    <p class="mt-2 text-gray-400">Coordinating end-to-end deployment for 400+ member projects. Led migration of 40+ microservices to Kubernetes. [cite: 16, 17]</p>
+                    <h3 class="text-xl font-bold mt-1">DevOps Engineer, Tata Consultancy Services (TCS)</h3>
+                    <p class="mt-2 text-gray-400">
+                        Acting as DevOps SPOC for an enterprise project of 400+ members. Migrated 40+ microservices to Kubernetes clusters and implemented Blue-Green deployment strategies for zero-risk rollbacks. Provisioned secure Azure infrastructure using Terraform and maintained CI/CD pipelines via Azure DevOps and Harness.
+                    </p>
                 </div>
+                <!-- Crypto Tax -->
                 <div class="timeline-item pl-12 relative">
-                    <div class="timeline-dot absolute left-0 top-1 w-8 h-8 rounded-full bg-accent flex items-center justify-center ring-8 ring-[#161B22]" style="background-image: linear-gradient(90deg, #30CFD0 0%, #c43ad6 100%);"><i data-lucide="code" class="w-4 h-4 text-white"></i></div>
+                    <div class="timeline-dot absolute left-0 top-1 w-8 h-8 rounded-full bg-accent flex items-center justify-center ring-8 ring-[#161B22]" style="background-image: linear-gradient(90deg, #30CFD0 0%, #c43ad6 100%);"><i data-lucide="terminal" class="w-4 h-4 text-white"></i></div>
                     <p class="text-sm font-semibold text-accent-gradient">Jan 2022 - Jan 2024</p>
                     <h3 class="text-xl font-bold mt-1">Python Developer, Crypto Tax International</h3>
-                    <p class="mt-2 text-gray-400">Reduced data processing time by 54% through optimized ETL workflows and algorithm refactoring. [cite: 24, 26]</p>
+                    <p class="mt-2 text-gray-400">
+                        Automated large-scale data pipelines reducing processing time by 54%. Performed cost basis analysis for crypto transactions, delivering $50,000 in annual savings through algorithm optimization.
+                    </p>
                 </div>
+                <!-- Walmart -->
                 <div class="timeline-item pl-12 relative">
-                    <div class="timeline-dot absolute left-0 top-1 w-8 h-8 rounded-full bg-accent flex items-center justify-center ring-8 ring-[#161B22]" style="background-image: linear-gradient(90deg, #30CFD0 0%, #c43ad6 100%);"><i data-lucide="zap" class="w-4 h-4 text-white"></i></div>
+                    <div class="timeline-dot absolute left-0 top-1 w-8 h-8 rounded-full bg-accent flex items-center justify-center ring-8 ring-[#161B22]" style="background-image: linear-gradient(90deg, #30CFD0 0%, #c43ad6 100%);"><i data-lucide="code" class="w-4 h-4 text-white"></i></div>
                     <p class="text-sm font-semibold text-accent-gradient">Jan 2023 - Oct 2023</p>
-                    <h3 class="text-xl font-bold mt-1">Software Engineer Intern, Walmart</h3>
-                    <p class="mt-2 text-gray-400">Optimized heap data structures and improved execution speed of shipping systems by 15%. [cite: 28, 29, 30]</p>
+                    <h3 class="text-xl font-bold mt-1">Advanced Software Engineer Intern, Walmart</h3>
+                    <p class="mt-2 text-gray-400">
+                        Designed optimized heap data structures improving processing efficiency by 20%. Refactored core modules to enhance execution speed by 15% and improved logistics operational metrics by 25%.
+                    </p>
+                </div>
+                <!-- TATA -->
+                <div class="timeline-item pl-12 relative">
+                    <div class="timeline-dot absolute left-0 top-1 w-8 h-8 rounded-full bg-accent flex items-center justify-center ring-8 ring-[#161B22]" style="background-image: linear-gradient(90deg, #30CFD0 0%, #c43ad6 100%);"><i data-lucide="bar-chart" class="w-4 h-4 text-white"></i></div>
+                    <p class="text-sm font-semibold text-accent-gradient">Oct 2021 - Dec 2021</p>
+                    <h3 class="text-xl font-bold mt-1">Data Analyst Intern, TATA</h3>
+                    <p class="mt-2 text-gray-400">
+                        Built interactive BI dashboards using Tableau and Angular for real-time insights. Improved predictive modeling accuracy by 20% through rigorous data cleaning and feature engineering.
+                    </p>
                 </div>
             </div>
         </div>
     </section>
 
-    <section id="skills" class="py-24 md:py-32">
+    <!-- Projects Section -->
+    <section id="projects" class="py-24 md:py-32">
         <h2 class="section-heading text-4xl md:text-5xl font-bold tracking-tight text-center mb-20">
-            Technical Arsenal<br>
+            Selected Technical Projects<br>
         </h2>
-        <div class="grid grid-cols-2 md:grid-cols-4 gap-6 text-center">
-            <div class="project-card bg-card p-8 rounded-2xl">
-                <i data-lucide="box" class="mx-auto mb-4 text-[#30CFD0]"></i>
-                <h3 class="font-bold">Kubernetes</h3>
+        <div class="grid md:grid-cols-2 gap-10">
+            <!-- NEW PROJECT: GitOps & Progressive Delivery -->
+            <div class="project-card md:col-span-2 block bg-card rounded-2xl p-2">
+                <div class="grid md:grid-cols-2 gap-6 items-center">
+                    <div class="rounded-xl overflow-hidden bg-gray-800 aspect-video">
+                        <img src="devops.png" class="project-image w-full object-contain" alt="GitOps Workflow" style="max-height: 400px;">
+                    </div>
+                    <div class="p-6">
+                        <div class="inline-block px-3 py-1 rounded-full bg-accent-gradient text-[10px] font-bold text-white uppercase tracking-widest mb-4">Cloud Native / GitOps</div>
+                        <h3 class="text-2xl font-bold mt-2">GitOps & Progressive Delivery Ecosystem</h3>
+                        <p class="text-gray-400 mt-4 leading-relaxed">
+                            Engineered a full-scale automated deployment pipeline on Azure (AKS/ACR) integrating <strong>GitHub Actions</strong> and <strong>ArgoCD</strong>. Implemented a <strong>GitOps</strong> model separating source code from deployment state, enabling <strong>Canary Rollouts</strong> via NGINX Ingress traffic splitting for zero-risk production releases.
+                        </p>
+                        <div class="flex flex-wrap gap-2 mt-6">
+                            <span class="px-2 py-1 bg-gray-800 rounded text-xs text-gray-400">Kubernetes</span>
+                            <span class="px-2 py-1 bg-gray-800 rounded text-xs text-gray-400">Terraform</span>
+                            <span class="px-2 py-1 bg-gray-800 rounded text-xs text-gray-400">ArgoCD</span>
+                            <span class="px-2 py-1 bg-gray-800 rounded text-xs text-gray-400">Azure</span>
+                        </div>
+                    </div>
+                </div>
             </div>
-            <div class="project-card bg-card p-8 rounded-2xl">
-                <i data-lucide="terminal" class="mx-auto mb-4 text-[#c43ad6]"></i>
-                <h3 class="font-bold">Terraform</h3>
-            </div>
-            <div class="project-card bg-card p-8 rounded-2xl">
-                <i data-lucide="layers" class="mx-auto mb-4 text-[#30CFD0]"></i>
-                <h3 class="font-bold">Azure DevOps</h3>
-            </div>
-            <div class="project-card bg-card p-8 rounded-2xl">
-                <i data-lucide="cpu" class="mx-auto mb-4 text-[#c43ad6]"></i>
-                <h3 class="font-bold">Python</h3>
-            </div>
+
+            <a href="https://github.com/siddiquiabdul007/OMR-Evaluator" target="_blank" class="project-card block bg-card rounded-2xl p-2">
+                <div class="rounded-xl overflow-hidden bg-gray-800 aspect-[4/3]">
+                    <img src="https://images.unsplash.com/photo-1587620962725-abab7fe55159?q=80&w=1931&auto=format&fit=crop" class="project-image w-full h-full object-cover" alt="OMR Evaluator Project">
+                </div>
+                <div class="p-6">
+                    <h3 class="text-xl font-semibold mt-2">OMR Evaluation System</h3>
+                    <p class="text-gray-400 mt-2">Computer vision system to automate grading with high precision, showcasing algorithmic problem solving.</p>
+                </div>
+            </a>
+            <a href="https://github.com/siddiquiabdul007/YouTube-Video-Data-Extraction-Text-Analysis-and-Automation" target="_blank" class="project-card block bg-card rounded-2xl p-2">
+                <div class="rounded-xl overflow-hidden bg-gray-800 aspect-[4/3]">
+                    <img src="https://images.unsplash.com/photo-1611162617213-7d7a39e9b1d7?q=80&w=1974&auto=format&fit=crop" class="project-image w-full h-full object-cover" alt="YouTube Analysis Project">
+                </div>
+                <div class="p-6">
+                    <h3 class="text-xl font-semibold mt-2">YouTube Data Pipeline</h3>
+                    <p class="text-gray-400 mt-2">Automated sentiment analysis engine built on top of data extraction pipelines for real-time consumer perception.</p>
+                </div>
+            </a>
         </div>
     </section>
 
+    <!-- Certifications Section -->
     <section id="certifications" class="py-24 md:py-32">
         <h2 class="section-heading text-4xl md:text-5xl font-bold tracking-tight text-center mb-20">
             Certifications<br>
         </h2>
         <div class="max-w-4xl mx-auto grid md:grid-cols-2 gap-8">
             <div class="cert-card bg-card rounded-2xl p-6 flex items-center space-x-5">
-                <div class="w-12 h-12 rounded-full bg-blue-900/30 flex items-center justify-center text-blue-400"><i data-lucide="award"></i></div>
+                <div class="w-16 h-16 rounded-full flex-shrink-0 bg-gray-800 flex items-center justify-center text-accent-gradient font-bold">TCS</div>
                 <div>
                     <h3 class="font-bold text-lg">Advanced Statistics & Data Mining</h3>
-                    <p class="text-sm text-gray-500">Aug 2024 [cite: 40]</p>
+                    <p class="text-sm text-gray-500">Tata Consultancy Services</p>
                 </div>
             </div>
             <div class="cert-card bg-card rounded-2xl p-6 flex items-center space-x-5">
-                <div class="w-12 h-12 rounded-full bg-purple-900/30 flex items-center justify-center text-purple-400"><i data-lucide="award"></i></div>
+                <div class="w-16 h-16 rounded-full flex-shrink-0 bg-gray-800 flex items-center justify-center text-accent-gradient font-bold">IBM</div>
                 <div>
                     <h3 class="font-bold text-lg">IBM Scala 101</h3>
-                    <p class="text-sm text-gray-500">Mar 2024 [cite: 41]</p>
+                    <p class="text-sm text-gray-500">Cognitive Class</p>
                 </div>
             </div>
             <div class="cert-card bg-card rounded-2xl p-6 flex items-center space-x-5">
-                <div class="w-12 h-12 rounded-full bg-green-900/30 flex items-center justify-center text-green-400"><i data-lucide="award"></i></div>
+                <div class="w-16 h-16 rounded-full flex-shrink-0 bg-gray-800 flex items-center justify-center text-accent-gradient font-bold">GCP</div>
                 <div>
-                    <h3 class="font-bold text-lg">Google Cloud Data Transformation</h3>
-                    <p class="text-sm text-gray-500">Feb 2024 [cite: 42]</p>
+                    <h3 class="font-bold text-lg">Data Transformation with GCP</h3>
+                    <p class="text-sm text-gray-500">Google Cloud</p>
                 </div>
             </div>
             <div class="cert-card bg-card rounded-2xl p-6 flex items-center space-x-5">
-                <div class="w-12 h-12 rounded-full bg-cyan-900/30 flex items-center justify-center text-cyan-400"><i data-lucide="award"></i></div>
+                <div class="w-16 h-16 rounded-full flex-shrink-0 bg-gray-800 flex items-center justify-center text-accent-gradient font-bold">MSFT</div>
                 <div>
-                    <h3 class="font-bold text-lg">Microsoft Software Development</h3>
-                    <p class="text-sm text-gray-500">Jan 2023 [cite: 43]</p>
+                    <h3 class="font-bold text-lg">Software Dev Essentials</h3>
+                    <p class="text-sm text-gray-500">Microsoft & LinkedIn</p>
                 </div>
             </div>
         </div>
     </section>
 
+    <!-- Contact Section -->
     <section id="contact" class="py-24 md:py-32 text-center">
         <h2 class="section-heading text-4xl md:text-5xl font-bold tracking-tight">
-            Ready to <span class="text-accent-gradient">scale?</span>
+            Ready to scale your infrastructure<br><span class="text-accent-gradient">?</span>
         </h2>
-        <p class="max-w-xl mx-auto text-lg text-gray-400 mt-8">Looking for a DevOps expert to optimize your CI/CD or migrate to K8s? Let's connect.</p>
+        <p class="max-w-xl mx-auto text-lg text-gray-400 mt-8">I'm currently focused on DevOps and Cloud Architecture roles. If you have a challenge involving K8s, Azure, or Automation, let's connect.</p>
         <a href="mailto:abdul983920@gmail.com" class="btn btn-primary py-4 px-10 rounded-full inline-block mt-12">
             abdul983920@gmail.com
         </a>
@@ -259,29 +320,44 @@
 </main>
 
 <footer class="py-8 text-center relative z-10">
-    <p class="text-sm text-gray-500">&copy; 2026 Abdul Ahad Siddiqui. [cite: 1]</p>
+    <p class="text-sm text-gray-500">&copy; 2024 Abdul Ahad Siddiqui. DevOps Engineer.</p>
 </footer>
 
 <script>
     lucide.createIcons();
 
+    // Mobile menu toggle
+    const mobileMenuButton = document.getElementById('mobile-menu-button');
+    const mobileMenu = document.getElementById('mobile-menu');
+    mobileMenuButton.addEventListener('click', () => {
+        mobileMenu.classList.toggle('hidden');
+    });
+    document.querySelectorAll('#mobile-menu a').forEach(link => {
+        link.addEventListener('click', () => mobileMenu.classList.add('hidden'));
+    });
+
     // --- Three.js Background Animation ---
     let scene, camera, renderer, particles;
+
     function initThree() {
         scene = new THREE.Scene();
         camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
         renderer = new THREE.WebGLRenderer({ canvas: document.getElementById('bg-canvas'), alpha: true });
         renderer.setSize(window.innerWidth, window.innerHeight);
 
-        const particleCount = 4000;
+        const particleCount = 5000;
         const positions = new Float32Array(particleCount * 3);
         const colors = new Float32Array(particleCount * 3);
         const particleGeometry = new THREE.BufferGeometry();
 
         for (let i = 0; i < particleCount; i++) {
-            positions[i * 3] = (Math.random() - 0.5) * 15;
-            positions[i * 3 + 1] = (Math.random() - 0.5) * 15;
-            positions[i * 3 + 2] = (Math.random() - 0.5) * 15;
+            const x = (Math.random() - 0.5) * 15;
+            const y = (Math.random() - 0.5) * 15;
+            const z = (Math.random() - 0.5) * 15;
+            positions[i * 3] = x;
+            positions[i * 3 + 1] = y;
+            positions[i * 3 + 2] = z;
+
             const color = new THREE.Color(Math.random() > 0.5 ? 0x30CFD0 : 0xc43ad6);
             colors[i*3] = color.r;
             colors[i*3+1] = color.g;
@@ -290,41 +366,134 @@
 
         particleGeometry.setAttribute('position', new THREE.BufferAttribute(positions, 3));
         particleGeometry.setAttribute('color', new THREE.BufferAttribute(colors, 3));
-        const particleMaterial = new THREE.PointsMaterial({ size: 0.02, vertexColors: true, transparent: true, opacity: 0.4 });
+
+        const particleMaterial = new THREE.PointsMaterial({
+            size: 0.02,
+            vertexColors: true,
+            transparent: true,
+            opacity: 0.6,
+            blending: THREE.AdditiveBlending
+        });
+
         particles = new THREE.Points(particleGeometry, particleMaterial);
         scene.add(particles);
         camera.position.z = 5;
+
         animate();
     }
 
+    let mouseX = 0, mouseY = 0;
+    document.addEventListener('mousemove', (event) => {
+        mouseX = (event.clientX - window.innerWidth / 2) / (window.innerWidth / 2);
+        mouseY = (event.clientY - window.innerHeight / 2) / (window.innerHeight / 2);
+    });
+
     function animate() {
         requestAnimationFrame(animate);
-        particles.rotation.y += 0.001;
+        const time = Date.now() * 0.0001;
+        particles.rotation.x = Math.sin(time) * 0.05;
+        particles.rotation.y = Math.cos(time) * 0.05;
+
+        camera.position.x += (mouseX * 0.5 - camera.position.x) * 0.05;
+        camera.position.y += (-mouseY * 0.5 - camera.position.y) * 0.05;
+        camera.lookAt(scene.position);
+
         renderer.render(scene, camera);
     }
+
+    window.addEventListener('resize', () => {
+        camera.aspect = window.innerWidth / window.innerHeight;
+        camera.updateProjectionMatrix();
+        renderer.setSize(window.innerWidth, window.innerHeight);
+    });
+
     initThree();
 
-    // --- GSAP ---
+    // --- GSAP Animations ---
     gsap.registerPlugin(ScrollTrigger);
-    gsap.from(".hero-el", { duration: 1.5, y: 100, autoAlpha: 0, stagger: 0.1, ease: "power4.out" });
-    
-    document.querySelectorAll(".section-heading").forEach(heading => {
+
+    const heroEls = document.querySelectorAll(".hero-el");
+    gsap.from(heroEls, {
+        duration: 1.5,
+        y: 120,
+        autoAlpha: 0,
+        stagger: 0.1,
+        ease: "power4.out",
+        delay: 0.2
+    });
+
+    const headings = document.querySelectorAll(".section-heading");
+    headings.forEach(heading => {
         gsap.set(heading, {autoAlpha: 1});
-        new SplitType(heading, { types: 'words' });
-        gsap.from(heading.querySelectorAll('.word'), {
-            scrollTrigger: { trigger: heading, start: "top 85%" },
-            duration: 1, yPercent: 100, autoAlpha: 0, stagger: 0.05, ease: "power4.out"
+        const typeSplit = new SplitType(heading, { types: 'lines, words', lineClass: 'line' });
+        gsap.from(typeSplit.words, {
+            scrollTrigger: {
+                trigger: heading,
+                start: "top 85%",
+            },
+            duration: 1.2,
+            yPercent: 100,
+            autoAlpha: 0,
+            stagger: 0.05,
+            ease: "power4.out",
         });
     });
 
-    gsap.from(".timeline-item", {
-        scrollTrigger: { trigger: "#experience", start: "top 70%" },
-        autoAlpha: 0, x: -50, stagger: 0.2, duration: 1
+    gsap.from(".about-image", {
+        scrollTrigger: { trigger: "#about", start: "top 80%" },
+        duration: 1.8,
+        clipPath: 'inset(0 100% 0 0)',
+        autoAlpha: 0,
+        ease: 'expo.out'
+    });
+    gsap.from(".about-text p", {
+        scrollTrigger: { trigger: ".about-text", start: "top 90%" },
+        duration: 1.2,
+        y: 40,
+        autoAlpha: 0,
+        stagger: 0.15,
+        ease: 'power3.out'
     });
 
-    gsap.from(".project-card, .cert-card", {
-        scrollTrigger: { trigger: "#skills", start: "top 80%" },
-        autoAlpha: 0, y: 50, stagger: 0.1, duration: 0.8
+    const timelinePath = document.querySelector('.timeline-path');
+    gsap.to(timelinePath, {
+        strokeDashoffset: 0,
+        scrollTrigger: {
+            trigger: '#experience',
+            start: 'top 40%',
+            end: 'bottom 80%',
+            scrub: 1.5
+        }
+    });
+
+    const timelineItems = document.querySelectorAll('.timeline-item');
+    timelineItems.forEach(item => {
+        gsap.from(item, {
+            scrollTrigger: {
+                trigger: item,
+                start: 'top 85%',
+                toggleActions: 'play none none reverse'
+            },
+            autoAlpha: 0,
+            x: -80,
+            duration: 1.2,
+            ease: 'power3.out'
+        });
+    });
+
+    const cards = document.querySelectorAll('.project-card, .cert-card');
+    cards.forEach(card => {
+        gsap.from(card, {
+            scrollTrigger: {
+                trigger: card,
+                start: 'top 90%',
+                toggleActions: 'play none none reverse'
+            },
+            autoAlpha: 0,
+            y: 80,
+            duration: 1.2,
+            ease: 'power3.out'
+        });
     });
 </script>
 </body>
